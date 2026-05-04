@@ -22,41 +22,41 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
 
 /* ── GRAIN TEXTURE ── */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0;}
 
 /* ── HERO ── */
 .hero{position:relative;padding:60px 20px 40px;text-align:center;overflow:hidden;}
 .hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(61,184,90,.12) 0%,transparent 70%);pointer-events:none;}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(61,184,90,.1);border:1px solid rgba(61,184,90,.25);border-radius:30px;padding:5px 14px;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;animation:fadeDown .6s ease both;}
-.hero-logo{font-size:3rem;margin-bottom:12px;animation:fadeDown .6s .1s ease both;display:block;}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;color:var(--gold);line-height:1.15;margin-bottom:8px;animation:fadeDown .6s .15s ease both;}
-.hero-sub{font-size:.88rem;color:var(--text2);font-weight:300;margin-bottom:6px;animation:fadeDown .6s .2s ease both;}
-.hero-addr{font-size:.72rem;color:var(--text3);font-family:'DM Mono',monospace;animation:fadeDown .6s .25s ease both;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(61,184,90,.1);border:1px solid rgba(61,184,90,.25);border-radius:30px;padding:5px 14px;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;animation:fadeDown.6s ease both;}
+.hero-logo{font-size:3rem;margin-bottom:12px;animation:fadeDown.6s.1s ease both;display:block;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;color:var(--gold);line-height:1.15;margin-bottom:8px;animation:fadeDown.6s.15s ease both;}
+.hero-sub{font-size:.88rem;color:var(--text2);font-weight:300;margin-bottom:6px;animation:fadeDown.6s.2s ease both;}
+.hero-addr{font-size:.72rem;color:var(--text3);font-family:'DM Mono',monospace;animation:fadeDown.6s.25s ease both;}
 
 /* ── PANIER FLOTTANT ── */
-.cart-fab{position:fixed;bottom:24px;right:20px;z-index:100;background:linear-gradient(135deg,var(--green2),var(--green));border:none;border-radius:50px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.88rem;padding:13px 20px;cursor:pointer;box-shadow:0 8px 32px rgba(61,184,90,.35);transition:all .25s;display:flex;align-items:center;gap:8px;}
+.cart-fab{position:fixed;bottom:24px;right:20px;z-index:100;background:linear-gradient(135deg,var(--green2),var(--green));border:none;border-radius:50px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.88rem;padding:13px 20px;cursor:pointer;box-shadow:0 8px 32px rgba(61,184,90,.35);transition:all.25s;display:flex;align-items:center;gap:8px;}
 .cart-fab:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(61,184,90,.5);}
 .cart-count{background:var(--gold);color:#050f06;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;font-family:'DM Mono',monospace;}
 
 /* ── SEARCH ── */
-.search-wrap{max-width:520px;margin:0 auto 28px;padding:0 20px;animation:fadeDown .6s .3s ease both;}
+.search-wrap{max-width:520px;margin:0 auto 28px;padding:0 20px;animation:fadeDown.6s.3s ease both;}
 .search-box{position:relative;}
-.search-box input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:12px 20px 12px 44px;outline:none;transition:border-color .2s;}
+.search-box input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:12px 20px 12px 44px;outline:none;transition:border-color.2s;}
 .search-box input:focus{border-color:rgba(61,184,90,.4);}
 .search-box::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none;z-index:1;}
 
 /* ── FILTRES ── */
-.filters{display:flex;gap:8px;padding:0 20px;margin-bottom:24px;overflow-x:auto;scrollbar-width:none;animation:fadeDown .5s .35s ease both;}
+.filters{display:flex;gap:8px;padding:0 20px;margin-bottom:24px;overflow-x:auto;scrollbar-width:none;animation:fadeDown.5s.35s ease both;}
 .filters::-webkit-scrollbar{display:none;}
-.filter-btn{flex-shrink:0;background:var(--bg2);border:1px solid var(--border);border-radius:30px;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:.76rem;padding:7px 16px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.filter-btn{flex-shrink:0;background:var(--bg2);border:1px solid var(--border);border-radius:30px;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:.76rem;padding:7px 16px;cursor:pointer;transition:all.2s;white-space:nowrap;}
 .filter-btn.active,.filter-btn:hover{background:rgba(61,184,90,.12);border-color:rgba(61,184,90,.35);color:var(--green);}
 
 /* ── FORMULES ── */
 .section-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);padding:0 20px;margin-bottom:14px;}
 .formules-scroll{display:flex;gap:12px;padding:0 20px 4px;overflow-x:auto;scrollbar-width:none;margin-bottom:32px;}
 .formules-scroll::-webkit-scrollbar{display:none;}
-.formule-card{flex-shrink:0;width:180px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
-.formule-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent);opacity:0;transition:opacity .2s;}
+.formule-card{flex-shrink:0;width:180px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:14px;cursor:pointer;transition:all.2s;position:relative;overflow:hidden;}
+.formule-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent);opacity:0;transition:opacity.2s;}
 .formule-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px);}
 .formule-card:hover::before{opacity:1;}
 .formule-emoji{font-size:1.6rem;margin-bottom:8px;display:block;}
@@ -64,13 +64,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .formule-desc{font-size:.72rem;color:var(--text2);line-height:1.5;margin-bottom:10px;}
 .formule-tags{display:flex;flex-wrap:wrap;gap:4px;}
 .formule-tag{font-size:.62rem;background:rgba(61,184,90,.1);border:1px solid rgba(61,184,90,.2);color:var(--green);border-radius:20px;padding:2px 7px;}
-.formule-apply{width:100%;margin-top:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:6px;color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;padding:6px;cursor:pointer;transition:all .2s;}
+.formule-apply{width:100%;margin-top:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:6px;color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;padding:6px;cursor:pointer;transition:all.2s;}
 .formule-apply:hover{background:rgba(201,168,76,.2);}
 
 /* ── GRILLE PRODUITS ── */
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:0 20px;margin-bottom:120px;}
-.prod-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;animation:fadeUp .4s ease both;}
-.prod-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(61,184,90,.08),transparent 70%);opacity:0;transition:opacity .3s;}
+.prod-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all.25s;position:relative;overflow:hidden;animation:fadeUp.4s ease both;}
+.prod-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(61,184,90,.08),transparent 70%);opacity:0;transition:opacity.3s;}
 .prod-card:hover{border-color:rgba(61,184,90,.3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3);}
 .prod-card:hover::after{opacity:1;}
 .prod-card.in-cart{border-color:rgba(61,184,90,.5);background:rgba(61,184,90,.05);}
@@ -80,17 +80,17 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .prod-price{font-family:'DM Mono',monospace;font-size:1rem;color:var(--gold);font-weight:500;}
 .prod-unit{font-size:.65rem;color:var(--text3);margin-top:1px;}
 .prod-actions{margin-top:12px;}
-.btn-add{width:100%;background:linear-gradient(135deg,rgba(61,184,90,.15),rgba(61,184,90,.08));border:1px solid rgba(61,184,90,.3);border-radius:8px;color:var(--green);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;padding:8px;cursor:pointer;transition:all .2s;}
+.btn-add{width:100%;background:linear-gradient(135deg,rgba(61,184,90,.15),rgba(61,184,90,.08));border:1px solid rgba(61,184,90,.3);border-radius:8px;color:var(--green);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;padding:8px;cursor:pointer;transition:all.2s;}
 .btn-add:hover{background:rgba(61,184,90,.25);}
 .qty-ctrl{display:flex;align-items:center;justify-content:space-between;gap:6px;}
-.qty-btn{background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text2);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:all .15s;flex-shrink:0;}
+.qty-btn{background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text2);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:all.15s;flex-shrink:0;}
 .qty-btn:hover{border-color:var(--green);color:var(--green);}
 .qty-val{font-family:'DM Mono',monospace;font-size:.88rem;color:var(--text);min-width:20px;text-align:center;}
 
 /* ── PANIER MODAL ── */
 .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:flex-end;backdrop-filter:blur(4px);}
 .cart-overlay.open{display:flex;}
-.cart-sheet{width:100%;background:var(--bg2);border-radius:20px 20px 0 0;padding:20px;max-height:85vh;overflow-y:auto;animation:slideUp .3s ease;}
+.cart-sheet{width:100%;background:var(--bg2);border-radius:20px 20px 0 0;padding:20px;max-height:85vh;overflow-y:auto;animation:slideUp.3s ease;}
 .cart-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px;}
 .cart-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);margin-bottom:16px;}
 .cart-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
@@ -109,29 +109,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .del-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:12px;}
 .del-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .del-field label{display:block;font-size:.68rem;color:var(--text3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em;font-family:'DM Mono',monospace;}
-.del-field input,.del-field select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);color:var(--text);font-family:'DM Sans',sans-serif;font-size:.84rem;padding:9px 12px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.del-field input,.del-field select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);color:var(--text);font-family:'DM Sans',sans-serif;font-size:.84rem;padding:9px 12px;outline:none;transition:border-color.2s;-webkit-appearance:none;}
 .del-field input:focus,.del-field select:focus{border-color:rgba(61,184,90,.4);}
 .del-field.full{grid-column:1/-1;}
 
 /* ── BOUTONS COMMANDE ── */
 .order-btns{display:grid;grid-template-columns:1fr;gap:10px;margin-top:4px;}
-.btn-wa{background:linear-gradient(135deg,#1da851,#25D366);border:none;border-radius:var(--r);color:#fff;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;padding:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;box-shadow:0 4px 20px rgba(37,211,102,.25);}
+.btn-wa{background:linear-gradient(135deg,#1da851,#25D366);border:none;border-radius:var(--r);color:#fff;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;padding:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all.2s;box-shadow:0 4px 20px rgba(37,211,102,.25);}
 .btn-wa:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(37,211,102,.4);}
 .btn-wa:active{transform:scale(.98);}
 .frais-info{font-size:.72rem;color:var(--text3);text-align:center;padding:8px 0;font-family:'DM Mono',monospace;}
 
 /* ── EMPTY ── */
 .empty-state{text-align:center;padding:60px 20px;color:var(--text3);}
-.empty-state .icon{font-size:3rem;margin-bottom:12px;display:block;}
+.empty-state.icon{font-size:3rem;margin-bottom:12px;display:block;}
 .empty-state p{font-size:.88rem;line-height:1.7;}
 
 /* ── TOAST ── */
-.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--bg3);border:1px solid var(--border2);border-radius:30px;color:var(--text);font-size:.82rem;padding:10px 20px;z-index:999;transition:transform .3s ease;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--bg3);border:1px solid var(--border2);border-radius:30px;color:var(--text);font-size:.82rem;padding:10px 20px;z-index:999;transition:transform.3s ease;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.4);}
 .toast.show{transform:translateX(-50%) translateY(0);}
 
 /* ── LOADING ── */
 .loading{text-align:center;padding:60px 20px;}
-.spinner{width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+.spinner{width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin.8s linear infinite;margin:0 auto 16px;}
 
 /* ── ANIMATIONS ── */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
@@ -142,8 +142,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 /* ── RESPONSIVE ── */
 @media(max-width:400px){
-  .products-grid{grid-template-columns:1fr 1fr;}
-  .del-grid{grid-template-columns:1fr;}
+ .products-grid{grid-template-columns:1fr 1fr;}
+ .del-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -164,7 +164,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- SEARCH -->
 <div class="search-wrap">
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher un produit…" oninput="filterProducts()">
+    <input type="text" id="searchInput" placeholder="Recher un produit…" oninput="filterProducts()">
   </div>
 </div>
 
@@ -216,7 +216,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
     <div class="order-btns">
       <button class="btn-wa" onclick="envoyerCommande()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.057 23.428a.5.5 0 0 0 .611.61l5.432-1.467A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.877 9.877 0 0 1-5.031-1.374l-.361-.214-3.741 1.01 1.023-3.634-.235-.374A9.838 9.838 0 0 1 2.118 12C2.118 6.533 6.533 2.118 12 2.118c5.466 0 9.882 4.415 9.882 9.882 0 5.466-4.416 9.882-9.882 9.882z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.057 23.428a.5.5 0 0.611.61l5.432-1.467A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.877 9.877 0 1-5.031-1.374l-.361-.214-3.741 1.01 1.023-3.634-.235-.374A9.838 9.838 0 1 2.118 12C2.118 6.533 6.533 2.118 12 2.118c5.466 0 9.882 4.415 9.882 9.882 0 5.466-4.416 9.882-9.882 9.882z"/></svg>
         Commander via WhatsApp
       </button>
     </div>
@@ -225,19 +225,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 <script>
 // ══ DONNÉES (injectées par l'app admin) ══
-const CATALOGUE_DATA = {"produits":[{"id":1777038632365,"name":"Bitter cola","category":"Fruit/Plante","sellPrice":500,"stock":0.3725,"unit":"seau","uniteCatalogue":"sachet"},{"id":1777038785206,"name":"Citron","category":"Fruit/Plante","sellPrice":100,"stock":4.1296,"unit":"seau","uniteCatalogue":"sachet"},{"id":1777040779067,"name":"Curcuma","category":"Épice","sellPrice":500,"stock":0.9787,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777040861548,"name":"Cannelle","category":"Épice","sellPrice":500,"stock":0.9887,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777040974234,"name":"Clou de girofle","category":"Épice","sellPrice":500,"stock":1.046,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777041022442,"name":"Laurier","category":"Épice","sellPrice":500,"stock":0.446,"unit":"sachet","uniteCatalogue":"sachet"},{"id":1777041187419,"name":"Ndongo","category":"Épice","sellPrice":500,"stock":162.5805,"unit":"pcs","uniteCatalogue":"sachet"},{"id":1777041224262,"name":"Graine de paix","category":"Épice","sellPrice":500,"stock":38.5842,"unit":"pcs","uniteCatalogue":"sachet"},{"id":1777041280327,"name":"Miel pur","category":"Épice","sellPrice":1300,"stock":2.5018,"unit":"bouteille","uniteCatalogue":"sachet"},{"id":1777041375118,"name":"Poivre noir","category":"Épice","sellPrice":12000,"stock":0.1719,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777288194691,"name":"Gingembre (moulu)","category":"Épice","sellPrice":500,"stock":20.0338,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777296247048,"name":"Ail","category":"Épice","sellPrice":100,"stock":6.6426,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777330149556,"name":"Curcuma (moulu)","category":"Épice","sellPrice":500,"stock":41.6426,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777330270103,"name":"Clou de girofle (moulu)","category":"Épice","sellPrice":500,"stock":35.0018,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777330578475,"name":"Betterave","category":"Épice","sellPrice":200,"stock":8.0403,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777439044623,"name":"Cannelle (moulu)","category":"Épice","sellPrice":500,"stock":12.1198,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777461012742,"name":"Poivre noir (moulu)","category":"Épice","sellPrice":100,"stock":24.7815,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777461589609,"name":"Cola","category":"Épice","sellPrice":2500,"stock":1.9587,"unit":"sachet","uniteCatalogue":"sachet"},{"id":1777461957570,"name":"Jujube des rois","category":"Épice","sellPrice":500,"stock":3,"unit":"pcs","uniteCatalogue":"sachet"},{"id":1777464606237,"name":"Menthe","category":"Épice","sellPrice":100,"stock":27.5158,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777897482551,"name":"Gingembre","category":"Épice","sellPrice":500,"stock":19.9672,"unit":"lot","uniteCatalogue":"sachet"}],"formules":[{"id":1,"nom":"Toux & Grippe","emoji":"🤧","produits":["Citron","Gingembre","Ail","Menthe"],"desc":"Immunité & voies respiratoires"},{"id":2,"nom":"Digestion & Ventre","emoji":"🌿","produits":["Gingembre","Citron","Curcuma","Laurier","cannelle","menthe"],"desc":"Transit, ballonnements, brûlures"},{"id":3,"nom":"Énergie & Vitalité","emoji":"⚡","produits":["Gingembre","Bitter cola","Miel pur","Moringa"],"desc":"Tonus, force, endurance"},{"id":4,"nom":"Anti-inflammatoire","emoji":"🔥","produits":["Curcuma","Gingembre","Poivre noir."],"desc":"Douleurs articulaires, inflammation"},{"id":5,"nom":"Détox & Purification","emoji":"💧","produits":["Citron","Curcuma","Gingembre","clou de girofle","cannelle"],"desc":"Nettoyage du foie et du sang"},{"id":1777824580670,"emoji":"🦍","nom":"Booster libido","desc":"Performance sexuelle et nettoyage des reins","produits":["Citron","Curcuma","cannelle","clou de girofle","Ndongo"]}],"lieux":["Ahala Barrière","Melen","Biyem-Assi","Nsam","Mvog-Mbi","Ngousso","Autre"],"frais":{"bon":0,"moyen":300,"simple":500},"lastUpdate":1777905553013}; void {
-  produits: [],
-  formules: [
-    {id:1, nom:'Toux & Grippe', emoji:'🤧', produits:['Citron','Gingembre','Ail','Menthe'], desc:'Immunité & voies respiratoires'},
-    {id:2, nom:'Digestion', emoji:'🌿', produits:['Gingembre','Citron','Curcuma'], desc:'Transit & confort digestif'},
-    {id:3, nom:'Énergie & Vitalité', emoji:'⚡', produits:['Gingembre','Miel pur','Moringa'], desc:'Tonus & endurance'},
-    {id:4, nom:'Anti-inflammatoire', emoji:'🔥', produits:['Curcuma','Gingembre','Cannelle'], desc:'Douleurs & inflammation'},
-    {id:5, nom:'Détox', emoji:'💧', produits:['Citron','Moringa','Gingembre'], desc:'Nettoyage & purification'},
-  ],
-  lieux: ['Ahala Barrière','Melen','Biyem-Assi','Nsam','Mvog-Mbi','Ngousso','Autre'],
-  frais: {bon:0, moyen:300, simple:500},
-  lastUpdate: null
-};
+const CATALOGUE_DATA = {"produits":[{"id":1777038632365,"name":"Bitter cola","category":"Fruit/Plante","sellPrice":500,"stock":0.3725,"unit":"seau","uniteCatalogue":"sachet"},{"id":1777038785206,"name":"Citron","category":"Fruit/Plante","sellPrice":100,"stock":4.1296,"unit":"seau","uniteCatalogue":"sachet"},{"id":1777040779067,"name":"Curcuma","category":"Épice","sellPrice":500,"stock":0.9787,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777040861548,"name":"Cannelle","category":"Épice","sellPrice":500,"stock":0.9887,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777040974234,"name":"Clou de girofle","category":"Épice","sellPrice":500,"stock":1.046,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777041022442,"name":"Laurier","category":"Épice","sellPrice":500,"stock":0.446,"unit":"sachet","uniteCatalogue":"sachet"},{"id":1777041187419,"name":"Ndongo","category":"Épice","sellPrice":500,"stock":162.5805,"unit":"pcs","uniteCatalogue":"sachet"},{"id":1777041224262,"name":"Graine de paix","category":"Épice","sellPrice":500,"stock":38.5842,"unit":"pcs","uniteCatalogue":"sachet"},{"id":1777041280327,"name":"Miel pur","category":"Épice","sellPrice":1300,"stock":2.5018,"unit":"bouteille","uniteCatalogue":"sachet"},{"id":1777041375118,"name":"Poivre noir","category":"Épice","sellPrice":12000,"stock":0.1719,"unit":"kg","uniteCatalogue":"sachet"},{"id":1777288194691,"name":"Gingembre (moulu)","category":"Épice","sellPrice":500,"stock":20.0338,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777296247048,"name":"Ail","category":"Épice","sellPrice":100,"stock":6.6426,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777330149556,"name":"Curcuma (moulu)","category":"Épice","sellPrice":500,"stock":41.6426,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777330270103,"name":"Clou de girofle (moulu)","category":"Épice","sellPrice":500,"stock":35.0018,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777330578475,"name":"Betterave","category":"Épice","sellPrice":200,"stock":8.0403,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777439044623,"name":"Cannelle (moulu)","category":"Épice","sellPrice":500,"stock":12.1198,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777461012742,"name":"Poivre noir (moulu)","category":"Épice","sellPrice":100,"stock":24.7815,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777461589609,"name":"Cola","category":"Épice","sellPrice":2500,"stock":1.9587,"unit":"sachet","uniteCatalogue":"sachet"},{"id":1777461957570,"name":"Jujube des rois","category":"Épice","sellPrice":500,"stock":3,"unit":"pcs","uniteCatalogue":"sachet"},{"id":1777464606237,"name":"Menthe","category":"Épice","sellPrice":100,"stock":27.5158,"unit":"lot","uniteCatalogue":"sachet"},{"id":1777897482551,"name":"Gingembre","category":"Épice","sellPrice":500,"stock":19.9672,"unit":"lot","uniteCatalogue":"sachet"}],"formules":[{"id":1,"nom":"Toux & Grippe","emoji":"🤧","produits":["Citron","Gingembre","Ail","Menthe"],"desc":"Immunité & voies respiratoires"},{"id":2,"nom":"Digestion & Ventre","emoji":"🌿","produits":["Gingembre","Citron","Curcuma","Laurier","cannelle","menthe"],"desc":"Transit, ballonnements, brûlures"},{"id":3,"nom":"Énergie & Vitalité","emoji":"⚡","produits":["Gingembre","Bitter cola","Miel pur","Moringa"],"desc":"Tonus, force, endurance"},{"id":4,"nom":"Anti-inflammatoire","emoji":"🔥","produits":["Curcuma","Gingembre","Poivre noir."],"desc":"Douleurs articulaires, inflammation"},{"id":5,"nom":"Détox & Purification","emoji":"💧","produits":["Citron","Curcuma","Gingembre","clou de girofle","cannelle"],"desc":"Nettoyage du foie et du sang"},{"id":1777824580670,"emoji":"🦍","nom":"Booster libido","desc":"Performance sexuelle et nettoyage des reins","produits":["Citron","Curcuma","cannelle","clou de girofle","Ndongo"]}],"lieux":["Ahala Barrière","Melen","Biyem-Assi","Nsam","Mvog-Mbi","Ngousso","Autre"],"frais":{"bon":0,"moyen":300,"simple":500},"lastUpdate":1777905553013};
 
 const EMOJI_MAP = {
   'Épice':'🌶️','Fruit/Plante':'🌿','Liquide':'🫙','Graine':'🌱',
@@ -280,12 +268,12 @@ function populerLieux(){
 
 // ══ FILTRES ══
 function renderFilters(){
-  const cats = ['Tous', ...new Set(produitsAll.map(p => p.category).filter(Boolean))];
+  const cats = ['Tous',...new Set(produitsAll.map(p => p.category).filter(Boolean))];
   const wrap = document.createElement('div');
   wrap.className = 'filters';
   cats.forEach(cat => {
     const btn = document.createElement('button');
-    btn.className = 'filter-btn' + (cat === filtreActif ? ' active' : '');
+    btn.className = 'filter-btn' + (cat === filtreActif? ' active' : '');
     btn.textContent = cat;
     btn.onclick = () => { filtreActif = cat; renderFilters(); renderProduits(); };
     wrap.appendChild(btn);
@@ -331,7 +319,7 @@ function appliquerFormule(id){
   if(!f) return;
   let ajouté = 0;
   f.produits.forEach(nom => {
-    const p = produitsAll.find(x => x.name === nom);
+    const p = produitsAll.find(x => x.name.toLowerCase() === nom.toLowerCase());
     if(p){ panier[p.id] = (panier[p.id] || 0) || 1; ajouté++; }
   });
   renderProduits();
@@ -344,7 +332,7 @@ function getEmoji(cat){ return EMOJI_MAP[cat] || EMOJI_MAP['default']; }
 
 function renderProduits(){
   let liste = produitsAll;
-  if(filtreActif !== 'Tous') liste = liste.filter(p => p.category === filtreActif);
+  if(filtreActif!== 'Tous') liste = liste.filter(p => p.category === filtreActif);
   if(searchTerm) liste = liste.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const content = document.getElementById('appContent');
@@ -365,7 +353,7 @@ function renderProduits(){
     const qty = panier[p.id] || 0;
     const inCart = qty > 0;
     const card = document.createElement('div');
-    card.className = 'prod-card' + (inCart ? ' in-cart' : '');
+    card.className = 'prod-card' + (inCart? ' in-cart' : '');
     card.style.animationDelay = (i * 0.04) + 's';
     card.innerHTML = `
       <span class="prod-emoji">${getEmoji(p.category)}</span>
@@ -375,160 +363,6 @@ function renderProduits(){
       <div class="prod-unit">/ ${p.uniteCatalogue || 'sachet'}</div>
       <div class="prod-actions">
         ${inCart
-          ? `<div class="qty-ctrl">
-               <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
-               <span class="qty-val">${qty}</span>
-               <button class="qty-btn" onclick="changeQty(${p.id},1)">+</button>
-             </div>`
-          : `<button class="btn-add" onclick="addToCart(${p.id})">+ Ajouter</button>`
-        }
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-function filterProducts(){
-  searchTerm = document.getElementById('searchInput')?.value || '';
-  renderProduits();
-}
-
-// ══ PANIER ══
-function addToCart(id){
-  panier[id] = 1;
-  renderProduits();
-  updateCartFab();
-  const p = produitsAll.find(x => x.id === id);
-  toast(`🌿 ${p?.name} ajouté`);
-}
-
-function changeQty(id, delta){
-  const current = panier[id] || 0;
-  const newQty = current + delta;
-  if(newQty <= 0){ delete panier[id]; }
-  else { panier[id] = newQty; }
-  renderProduits();
-  updateCartFab();
-}
-
-function updateCartFab(){
-  const total = Object.values(panier).reduce((s,q) => s+q, 0);
-  const fab = document.getElementById('cartFab');
-  const count = document.getElementById('cartCount');
-  if(fab){ fab.style.display = total > 0 ? 'flex' : 'none'; }
-  if(count){ count.textContent = total; }
-}
-
-function openCart(){
-  renderCartSheet();
-  document.getElementById('cartOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCart(){
-  document.getElementById('cartOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function closeCartOnBg(e){
-  if(e.target === document.getElementById('cartOverlay')) closeCart();
-}
-
-function renderCartSheet(){
-  const items = Object.entries(panier).map(([id,qty]) => {
-    const p = produitsAll.find(x => x.id === parseInt(id));
-    if(!p) return null;
-    return {p, qty};
-  }).filter(Boolean);
-
-  const sousTotal = items.reduce((s,{p,qty}) => s + (p.sellPrice||0)*qty, 0);
-  const frais = CATALOGUE_DATA.frais?.simple || 500;
-  const total = sousTotal + frais;
-
-  // Items
-  const itemsEl = document.getElementById('cartItems');
-  itemsEl.innerHTML = items.map(({p,qty}) => `
-    <div class="cart-item">
-      <div>
-        <div class="cart-item-name">${p.name}</div>
-        <div class="cart-item-sub">${qty} × ${(p.sellPrice||0).toLocaleString('fr-FR')} FCFA / ${p.uniteCatalogue||'sachet'}</div>
-      </div>
-      <div class="cart-item-price">${((p.sellPrice||0)*qty).toLocaleString('fr-FR')} F</div>
-    </div>
-  `).join('');
-
-  // Summary
-  document.getElementById('cartSummary').innerHTML = `
-    <div class="cart-total-row">
-      <span class="cart-total-label">Sous-total</span>
-      <span class="cart-total-val">${sousTotal.toLocaleString('fr-FR')} FCFA</span>
-    </div>
-    <div class="cart-total-row">
-      <span class="cart-total-label">Livraison</span>
-      <span class="cart-total-val" style="color:var(--text2)">${frais.toLocaleString('fr-FR')} FCFA</span>
-    </div>
-    <div class="cart-grand">
-      <span class="cart-grand-label">Total</span>
-      <span class="cart-grand-val">${total.toLocaleString('fr-FR')} FCFA</span>
-    </div>
-  `;
-
-  document.getElementById('fraisInfo').textContent = `🚚 Frais de livraison inclus · Paiement à la livraison`;
-}
-
-// ══ COMMANDE WHATSAPP ══
-function envoyerCommande(){
-  const items = Object.entries(panier).map(([id,qty]) => {
-    const p = produitsAll.find(x => x.id === parseInt(id));
-    if(!p) return null;
-    return {nom:p.name, prix:p.sellPrice||0, qty, unit:p.uniteCatalogue||'sachet'};
-  }).filter(Boolean);
-
-  if(items.length === 0){ toast('⚠️ Panier vide'); return; }
-
-  const nom   = document.getElementById('delNom')?.value.trim();
-  const tel   = document.getElementById('delTel')?.value.trim();
-  const lieu  = document.getElementById('delLieu')?.value;
-  const date  = document.getElementById('delDate')?.value;
-  const heure = document.getElementById('delHeure')?.value;
-  const note  = document.getElementById('delNote')?.value.trim();
-
-  if(!nom){ toast('⚠️ Entrez votre nom'); return; }
-  if(!lieu){ toast('⚠️ Choisissez un lieu de livraison'); return; }
-
-  const sousTotal = items.reduce((s,it) => s + it.prix*it.qty, 0);
-  const frais = CATALOGUE_DATA.frais?.simple || 500;
-  const total = sousTotal + frais;
-
-  const lignes = items.map(it => `• ${it.nom} ×${it.qty} — ${(it.prix*it.qty).toLocaleString('fr-FR')} FCFA`).join('\n');
-
-  const msg = `🌿 *COMMANDE U-Santé & Nature*\n\n👤 *${nom}*${tel ? `\n📱 ${tel}` : ''}\n\n📦 *Produits commandés :*\n${lignes}\n\n💰 Sous-total : ${sousTotal.toLocaleString('fr-FR')} FCFA\n🚚 Livraison : ${frais.toLocaleString('fr-FR')} FCFA\n✅ *TOTAL : ${total.toLocaleString('fr-FR')} FCFA*\n\n📍 Lieu : ${lieu}\n📅 ${date || 'Date à définir'} à ${heure}${note ? `\n📝 ${note}` : ''}\n\n_Paiement à la livraison · la nature au service de tous_ 🌿`;
-
-  window.open(`https://wa.me/237653791333?text=${encodeURIComponent(msg)}`, '_blank');
-  closeCart();
-  toast('📲 Redirection WhatsApp…');
-}
-
-// ══ TOAST ══
-function toast(msg, duration=2800){
-  const el = document.getElementById('toast');
-  if(!el) return;
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.remove('show'), duration);
-}
-
-// ══ DÉMARRAGE ══
-window.addEventListener('DOMContentLoaded', () => {
-  const content = document.getElementById('appContent');
-  if(CATALOGUE_DATA.produits.length === 0){
-    content.innerHTML = `<div class="empty-state"><span class="icon">🌿</span><p>Catalogue en cours de mise à jour.<br>Revenez bientôt !</p></div>`;
-  } else {
-    content.innerHTML = '';
-    init();
-  }
-});
-</script>
-</body>
-</html>
+         ? `<div class="qty-ctrl">
+               <button class="qty-btn" onclick="event.stopPropagation(); changeQty(${p.id},-1)">−</button>
+               <span class="qty-val">${qty}</span
