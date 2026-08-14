@@ -3339,59 +3339,129 @@ function appendMsg(role, text, isLoading=false){
   return bubble;
 }
 
-async function chatSend(text){
+// ══ ASSISTANT LOCAL (100% hors-ligne, sans API, sans clé) ══
+// Analyse le texte de la question et pioche dans les vraies données du commerce.
+function stripAccents(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function norm(s){ return stripAccents((s||'').toLowerCase()); }
+
+function findProductInText(t){
+  return products.find(p => t.includes(norm(p.name)));
+}
+
+function answerLocal(rawText){
+  const t = norm(rawText);
+  const now = Date.now();
+  const td = new Date(); td.setHours(0,0,0,0);
+  const todaySales = sales.filter(s=>s.ts>=td.getTime());
+  const caJour = todaySales.reduce((s,x)=>s+x.revenue,0);
+  const profitJour = todaySales.reduce((s,x)=>s+x.profit,0);
+
+  // Salutations
+  if(/^(bonjour|salut|bjr|hello|slt|coucou|hey)/.test(t)){
+    return `Salut ! 🌿 Je peux répondre à des questions sur ton stock, tes ventes du jour, tes commandes ou te donner des conseils. Essaie par exemple : "quels produits sont en rupture ?" ou "quel est mon profit aujourd'hui ?"`;
+  }
+
+  // Rupture / stock faible
+  if(t.includes('rupture') || (t.includes('stock') && (t.includes('faible')||t.includes('critique')||t.includes('manque')))){
+    const critiques = products.filter(p=>p.stock<=0 || p.stock<=(p.minAlert||1));
+    if(critiques.length===0) return `✅ Aucun produit en stock critique pour l'instant. Tout va bien de ce côté.`;
+    return `⚠️ Produits à surveiller ou à réapprovisionner :\n` + critiques.map(p=>`• ${p.name} : ${fn(p.stock,2)} ${p.unit} restant${p.stock<=0?' — ÉPUISÉ':''}`).join('\n');
+  }
+
+  // Produit le plus rentable / le mieux vendu
+  if(t.includes('meilleur') || t.includes('plus rentable') || t.includes('plus vendu') || t.includes('quel produit')){
+    const classement = [...products].filter(p=>p.sellPrice>p.buyPrice).sort((a,b)=>((b.sellPrice-b.buyPrice)*(b.salesPerDay||0))-((a.sellPrice-a.buyPrice)*(a.salesPerDay||0))).slice(0,3);
+    if(classement.length===0) return `Je n'ai pas assez de données (prix d'achat/vente) pour identifier tes produits les plus rentables. Complète-les dans l'Inventaire.`;
+    return `🏆 Tes produits les plus rentables actuellement :\n` + classement.map((p,i)=>`${i+1}. ${p.name} — profit estimé +${fc((p.sellPrice-p.buyPrice)*(p.salesPerDay||0))}/jour`).join('\n');
+  }
+
+  // Ventes / CA du jour
+  if((t.includes('vente')||t.includes('chiffre')||t.includes(' ca ')||t.startsWith('ca ')) && (t.includes('jour')||t.includes('aujourd'))){
+    if(todaySales.length===0) return `Aucune vente enregistrée aujourd'hui pour l'instant.`;
+    return `📊 Aujourd'hui : ${todaySales.length} vente${todaySales.length>1?'s':''}, CA de ${fc(caJour)}, profit de ${fc(profitJour)}.`;
+  }
+
+  // Profit / marge du jour
+  if(t.includes('profit') || t.includes('marge')){
+    return `💰 Profit du jour : ${fc(profitJour)} (sur un CA de ${fc(caJour)} pour ${todaySales.length} vente${todaySales.length>1?'s':''}).`;
+  }
+
+  // Capital
+  if(t.includes('capital') || t.includes('argent disponible') || t.includes('combien j ai')){
+    return `💵 Ton capital disponible est de ${fc(capital)}.`;
+  }
+
+  // Valeur du stock
+  if(t.includes('valeur') && t.includes('stock')){
+    const valeur = products.reduce((s,p)=>s+(p.stock*(p.buyPrice||0)),0);
+    return `📦 Valeur totale de ton stock (au prix d'achat) : ${fc(valeur)}, réparti sur ${products.length} produit${products.length>1?'s':''}.`;
+  }
+
+  // Nombre de produits
+  if(t.includes('combien') && t.includes('produit')){
+    return `Tu as actuellement ${products.length} produit${products.length>1?'s':''} référencé${products.length>1?'s':''} dans ton inventaire.`;
+  }
+
+  // Commandes en attente
+  if(t.includes('commande')){
+    const pending = commandes.filter(c=>c.status==='pending').length;
+    const preparing = commandes.filter(c=>c.status==='preparing').length;
+    if(pending===0 && preparing===0) return `✅ Aucune commande en attente. Tout est traité !`;
+    return `🛒 ${pending} commande${pending>1?'s':''} en attente, ${preparing} en préparation.`;
+  }
+
+  // Clients
+  if(t.includes('client')){
+    if(clients.length===0) return `Aucun client enregistré pour l'instant.`;
+    return `👥 Tu as ${clients.length} client${clients.length>1?'s':''} enregistré${clients.length>1?'s':''}.`;
+  }
+
+  // Santé du business
+  if(t.includes('sante') || t.includes('score')){
+    const {score,label} = calculerSante();
+    return `🏥 Santé de ton business : ${score}/100 — ${label}.`;
+  }
+
+  // Conseils généraux → réutilise le moteur d'analyse existant
+  if(t.includes('conseil') || t.includes('aide') || t.includes('recommand') || t.includes('quoi faire') || t.includes('que faire')){
+    const {avertissements,conseils,suggestions} = analyserIA();
+    const items = [...avertissements, ...conseils, ...suggestions].slice(0,3);
+    if(items.length===0) return `Tout semble en ordre pour l'instant, aucun conseil urgent à te donner. 👍`;
+    return `Voici ce que je remarque :\n` + items.map(i=>`${i.icon} ${i.texte}`).join('\n\n');
+  }
+
+  // Question sur un produit précis
+  const prod = findProductInText(t);
+  if(prod){
+    const dj = daysLeft(prod);
+    const marge = prod.sellPrice>0 ? fn((prod.sellPrice-prod.buyPrice)/prod.sellPrice*100,1) : 0;
+    return `🌿 ${prod.name} :\n• Stock : ${fn(prod.stock,2)} ${prod.unit}\n• Prix vente : ${fc(prod.sellPrice)} / achat : ${fc(prod.buyPrice)}\n• Marge : ${marge}%\n• Autonomie estimée : ${dj>=9999?'indéterminée (V/jour non renseigné)':dj+' jour(s)'}`;
+  }
+
+  // Fallback
+  return `Je n'ai pas encore de réponse toute prête pour cette question. Je peux répondre sur :\n• le stock ("quels produits sont en rupture ?")\n• les ventes du jour ("quel est mon CA aujourd'hui ?")\n• le profit ("quel est mon profit du jour ?")\n• les commandes en attente\n• un produit précis (dis juste son nom)\n• des conseils généraux ("donne-moi des conseils")\n\nCet assistant fonctionne hors-ligne à partir de tes vraies données — pas encore d'IA conversationnelle complète (ça viendra avec UPIT 🎓).`;
+}
+
+function chatSend(text){
   if(!text.trim()) return;
   const input=document.getElementById('chatInput');
   const btn=document.getElementById('chatSendBtn');
 
-  // Afficher message utilisateur
   appendMsg('user', text);
-  chatHistory.push({role:'user', content:text});
 
-  // Désactiver input
   if(input) input.value='';
   if(btn){ btn.disabled=true; btn.style.opacity='.5'; }
 
-  // Afficher loading
   const loadBubble = appendMsg('assistant','',true);
 
-  try {
-    const systemPrompt = buildContexte();
-    const response = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system: systemPrompt,
-        messages: chatHistory.slice(-10) // garder les 10 derniers échanges
-      })
-    });
-
+  // Traitement 100% local, instantané — petite latence simulée pour un rendu naturel
+  setTimeout(()=>{
     clearInterval(loadBubble._interval);
-    const data = await response.json();
-    const reply = data.content?.[0]?.text || 'Désolé, je n\'ai pas pu répondre.';
-
-    // Animer la réponse
-    loadBubble.textContent='';
-    let i=0;
-    const anim=setInterval(()=>{
-      loadBubble.textContent=reply.slice(0,i);
-      i+=3;
-      document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight;
-      if(i>reply.length){ loadBubble.textContent=reply; clearInterval(anim); }
-    },18);
-
-    chatHistory.push({role:'assistant',content:reply});
-
-  } catch(e) {
-    clearInterval(loadBubble._interval);
-    loadBubble.textContent='⚠ Erreur de connexion. Vérifie ta connexion internet.';
-    loadBubble.style.color='var(--red)';
-    loadBubble.style.borderColor='rgba(217,79,79,.3)';
-  } finally {
+    const reply = answerLocal(text);
+    loadBubble.textContent = reply;
+    document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight;
     if(btn){ btn.disabled=false; btn.style.opacity='1'; }
-  }
+  }, 400);
 }
 
 function chatSendFromInput(){
