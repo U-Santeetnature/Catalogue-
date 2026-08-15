@@ -1763,7 +1763,7 @@ function editPerem(prodId){
 
 function editP(id,field,val){
   const p=products.find(x=>x.id===id);
-  if(p){ p[field]=parseFloat(val)||0; save(); }
+  if(p){ p[field]=parseFloat(String(val).replace(',','.'))||0; save(); }
 }
 function editPStr(id,field,val){
   const p=products.find(x=>x.id===id);
@@ -2550,9 +2550,9 @@ function renderInventory(){
         <div class="sbar"><div class="sbar-fill" style="width:${pct}%;background:${bc}"></div></div>
         <span style="font-size:.68rem;color:var(--text3)">${p.unit}</span>
       </div></td>
-      <td><input class="ii" value="${p.salesPerDay??0}" onchange="editP(${p.id},'salesPerDay',this.value)"></td>
-      <td><input class="ii" value="${p.buyPrice}" onchange="editP(${p.id},'buyPrice',this.value)"></td>
-      <td><input class="ii" value="${p.sellPrice}" onchange="editP(${p.id},'sellPrice',this.value)"></td>
+      <td><input class="ii" value="${p.salesPerDay??0}" oninput="editP(${p.id},'salesPerDay',this.value)"></td>
+      <td><input class="ii" value="${p.buyPrice}" oninput="editP(${p.id},'buyPrice',this.value)"></td>
+      <td><input class="ii" value="${p.sellPrice}" oninput="editP(${p.id},'sellPrice',this.value)"></td>
       <td style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:${dp>=0?'var(--green)':'var(--red)'}">${dp>=0?'+':''}${Math.round(dp)}</td>
       <td>${isLot
         ? `<span class="plaf-badge">${fn(p.sellPrice,0)} F/lot · rev.${fn(p.buyPrice,0)} F</span>`
