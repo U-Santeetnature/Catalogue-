@@ -5076,8 +5076,9 @@ function buildCatalogueHTML(){
 
 async function getFileSha(token, user, repo, path){
   try {
-    const res = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${path}`, {
-      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+    const res = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${path}?ts=${Date.now()}`, {
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' },
+      cache: 'no-store'
     });
     if(res.ok){ const d = await res.json(); return d.sha; }
   } catch(e){}
@@ -5113,27 +5114,41 @@ async function publierCatalogue(){
     const html = buildCatalogueHTML();
     const encoded = btoa(unescape(encodeURIComponent(html)));
 
-    // Étape 2 : Récupérer SHA si fichier existe
+    // Étape 2 : Récupérer SHA si fichier existe (toujours la version la plus fraîche)
     setPublishProgress('🔍 Vérification du dépôt…', 'loading');
-    const sha = await getFileSha(token, user, repo, 'index.html');
+    let sha = await getFileSha(token, user, repo, 'index.html');
 
-    // Étape 3 : Push sur GitHub
+    // Étape 3 : Push sur GitHub, avec une nouvelle tentative automatique
+    // en cas de conflit de version (le fichier a changé entre la lecture et l'écriture)
     setPublishProgress('📡 Envoi vers GitHub…', 'loading');
-    const body = {
-      message: `🌿 Mise à jour catalogue — ${new Date().toLocaleString('fr-FR')}`,
-      content: encoded,
-      ...(sha ? {sha} : {})
-    };
-
-    const res = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/index.html`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${token}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
+    let res, tentatives = 0;
+    while(tentatives < 3){
+      const body = {
+        message: `🌿 Mise à jour catalogue — ${new Date().toLocaleString('fr-FR')}`,
+        content: encoded,
+        ...(sha ? {sha} : {})
+      };
+      res = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/index.html`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      if(res.ok) break;
+      const errCheck = await res.clone().json().catch(()=>({}));
+      const isShaConflict = res.status===409 || res.status===422 || /does not match|sha/i.test(errCheck.message||'');
+      tentatives++;
+      if(isShaConflict && tentatives < 3){
+        setPublishProgress(`🔄 Conflit de version détecté, nouvelle tentative (${tentatives}/2)…`, 'loading');
+        await new Promise(r=>setTimeout(r,800));
+        sha = await getFileSha(token, user, repo, 'index.html');
+        continue;
+      }
+      break;
+    }
 
     if(!res.ok){
       const err = await res.json();
